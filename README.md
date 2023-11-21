@@ -1,1 +1,14 @@
+![GitHub Logo](http://www.heise.de/make/icons/make_logo.png)
+
+Maker Media GmbH
+*** 
+
 # Personenwaage
+15-Eureo-Personenwaage fürs Smarthome fit machen
+### Diese Anleitung zeigt, wie man eine einfache Personenwaage zur Zusammenarbeit mit Home Assistant bringen kann.
+
+Beginn eines Project in work. Schritt für Schritt ergänzen wir diese Waage.
+
+![Picture](https://github.com/MakeMagazinDE/Weihnachtskarten/blob/main/Aufmacher_quer.JPG) 
+
+Den vollständigen ersten Artikel mit der Bauanleitung gibt es in der **[Make-Ausgabe 7/23 ab Seite 82](https://www.heise.de/select/make/2023/7/2326910011695301010)** zu lesen. 
