@@ -7,7 +7,7 @@ Maker Media GmbH
 15-Eureo-Personenwaage fürs Smarthome fit machen
 ### Diese Anleitung zeigt, wie man eine einfache Personenwaage zur Zusammenarbeit mit Home Assistant bringen kann.
 
-Beginn eines Project in work. Schritt für Schritt ergänzen wir diese Waage.
+Schritt für Schritt ergänzen wir diese Waage.
 
 ![Picture](https://github.com/MakeMagazinDE/Personenwaage/blob/main/Waage.jpg)
 
