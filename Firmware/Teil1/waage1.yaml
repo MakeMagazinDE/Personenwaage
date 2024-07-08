@@ -1,0 +1,105 @@
+esp32_touch:
+  setup_mode: true
+
+sensor:
+  - platform: hx711
+    name: "HX711 Value"
+    dout_pin: 16
+    clk_pin: 17
+    gain: 128
+    update_interval: 0.5s
+    filters:
+      - calibrate_linear:
+          - 197800 -> 0
+          - -3474791 -> 119.5
+      - sliding_window_moving_average:
+          window_size: 2
+          send_every: 2
+          send_first_at: 2
+    unit_of_measurement: kg
+    accuracy_decimals: 1        
+
+  - platform: homeassistant
+    id: Gewicht
+    entity_id: sensor.waage1_hx711_value
+    internal: true
+
+
+binary_sensor:
+  - platform: esp32_touch
+    name: "ESP32 Touch Pad GPIO27"
+    pin: 13
+    threshold: 223
+    wakeup_threshold: 223
+
+  - platform: gpio
+    name: "Switch 1"
+    pin: 22
+    
+  - platform: gpio
+    name: "Switch 2"
+    pin: 19
+    
+  - platform: gpio
+    name: "Switch 3"
+    pin: 23
+
+switch:
+  - platform: gpio
+    pin: 18
+    inverted: true
+    name: "HX711 Switch"
+
+
+spi:
+  clk_pin: GPIO33 # (Pin on display - SCK/T_CLK)
+  mosi_pin: GPIO25 # (Pin on display - SDI(MOSI)/T_DIN)
+  miso_pin: GPIO35 # (Pin on display - SDO(MISO)/T_DO)
+
+font:
+  - file: "fonts/Antenna-Bold.ttf"
+    id: my_font
+    size: 32
+  - file: "fonts/Antenna-Bold.ttf"
+    id: my_font2
+    size: 64
+
+color:
+- id: my_red
+  red: 100%
+  green: 3%
+  blue: 5%
+- id: my_cyan
+  red: 0%
+  green: 80%
+  blue: 80%
+
+display:
+- platform: ili9xxx
+  #model: TFT 2.4
+  model: ili9341
+  rotation: 270
+  cs_pin: GPIO14 # (Pin on display - CS)
+  dc_pin: GPIO26 # (Pin on display - DC)
+  reset_pin: GPIO27 # (Pin on display - RESET)
+
+
+
+  lambda: |-
+      it.fill(Color::BLACK);
+      it.print(0, 0, id(my_font2), id(my_red), TextAlign::TOP_LEFT, "Make:");  
+      it.printf(0,80, id(my_font2), "%4.1f", id(Gewicht).state);
+      it.printf(200,80, id(my_font), TextAlign::TOP_LEFT, "Kg");
+ 
+output:
+  - platform: ledc
+    pin: 32
+    id: gpio_32_backlight_pwm
+
+# Define a monochromatic, dimmable light for the backlight
+light:
+  - platform: monochromatic
+    output: gpio_32_backlight_pwm
+    name: "Display Backlight"
+    id: back_light
+    restore_mode: ALWAYS_ON
