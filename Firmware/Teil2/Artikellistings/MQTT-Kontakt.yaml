@@ -1,0 +1,10 @@
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# Kontakt zum MQTT-Broker
+mqtt:
+  broker: 192.168.XXX.YYY
+  username: mqtt-user
+  password: "Passwort einfügen"

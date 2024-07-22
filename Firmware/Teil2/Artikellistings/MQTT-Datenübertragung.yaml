@@ -1,0 +1,56 @@
+binary_sensor:
+  - platform: esp32_touch
+    name: "ESP32 Touch Pad GPIO27"
+    pin: 13
+    threshold: 223
+    wakeup_threshold: 223
+
+  - platform: gpio
+    name: "Switch 1"
+    pin: 22
+    
+  - platform: gpio
+    name: "Switch 2"
+    pin: 19
+    
+  - platform: gpio
+    name: "Switch 3"
+    pin: 23
+
+  - platform: rdm6300
+    uid: 11520666
+    name: "Claudia"
+    id: claudia  
+    on_press:
+      then:
+        - mqtt.publish_json:
+            topic: /rdm6300
+            payload: |-
+              root["Person"] = "Claudia";
+              root["Gewicht"] = id(hx711_value).state;
+        - switch.toggle: rdm6300power
+
+  - platform: rdm6300
+    uid: 12113815
+    name: "Klaus"
+    id: Klaus
+    on_press:
+      then:
+        - mqtt.publish_json:
+            topic: /rdm6300
+            payload: |-
+              root["Person"] = "Klaus";
+              root["Gewicht"] = id(hx711_value).state;  
+        - switch.toggle: rdm6300power
+
+switch:
+  - platform: gpio
+    pin: 18
+    inverted: true
+    name: "HX711 Switch"
+  
+  - platform: gpio
+    pin: 5
+    inverted: false
+    name: "RDM6300Power"
+    id: rdm6300power
