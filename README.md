@@ -18,3 +18,5 @@ Den vollständigen zweiten Artikel mit der Bauanleitung gibt es in der **[Make-A
 Die im zweiten Teil des Artikels erklärten Listings finden Sie hier **[hier](https://github.com/MakeMagazinDE/Personenwaage/tree/main/Firmware/Teil2/Artikellistings)**. 
 
 Hier finden Sie die [Firmware](https://github.com/MakeMagazinDE/Personenwaage/blob/main/Firmware/Teil2/waage1.yaml) aus dem 2. Teil.
+
+Hier finden Sie die [Firmware](https://github.com/MakeMagazinDE/Personenwaage/blob/main/Firmware/Teil3/waage1.yaml) aus dem 3. Teil (nur Online).
